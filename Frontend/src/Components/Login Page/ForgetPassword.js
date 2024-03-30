@@ -1,8 +1,9 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { BASE_URL } from '../../secrets';
 import '../Styles/login.css'
-// import axios from 'axios';
+
 // import { connect } from 'react-redux';
 // import { useHistory } from 'react-router-dom';
 
@@ -12,7 +13,7 @@ function ForgetPassword() {
 
     const handleForgetPassword=async()=>{
         try{
-            const data=await axios.post("http://localhost:4500/user/forgetpassword",{
+            const data=await axios.post(`${BASE_URL}/user/forgetpassword`,{
                 email:email
             });
             history.push("/resetpassword")

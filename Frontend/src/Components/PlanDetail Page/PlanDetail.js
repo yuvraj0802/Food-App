@@ -4,6 +4,9 @@ import { useParams } from 'react-router';
 import '../Styles/planDetail.css'
 import '../Styles/contact.css'
 import AuthProvider, { useAuth } from '../Context/AuthProvider';
+import { BASE_URL } from '../../secrets';
+
+
 
 function PlanDetail() {
     const [plan, setplan] = useState({})
@@ -15,12 +18,12 @@ function PlanDetail() {
     console.log(id);
     useEffect(async () => {
         console.log("inside useeffect");
-        const data = await axios.get("http://localhost:4500/plans/plan/"+id)
+        const data = await axios.get(`${BASE_URL}/plans/plan/`+id)
         console.log(data,565785765);
         delete data.data.data["_id"]
         delete data.data.data["__v"]
         setplan(data.data.data)
-        const reviews = await axios.get("http://localhost:4500/review/"+id);
+        const reviews = await axios.get(`${BASE_URL}/review/`+id);
         // console.log(reviews);
         console.log(reviews.data.data,1245456);
         setarr(reviews.data.data)
@@ -34,14 +37,14 @@ function PlanDetail() {
     // console.log("user ",user);
     const handleClick = async () => {
         console.log(123645);
-        const data = await axios.post("http://localhost:4500/review/crud/"+id, {
+        const data = await axios.post(`${BASE_URL}/review/crud/`+id, {
             "review": review,
             "rating": rate,
             "user": user._id,
             "plan": id
         })
         console.log(data);
-        const reviews = await axios.get("http://localhost:4500/review/" + id);
+        const reviews = await axios.get(`${BASE_URL}/review/` + id);
         console.log(reviews);
         setarr(reviews.data.data);
     }
@@ -49,9 +52,9 @@ function PlanDetail() {
         try{
            
             // console.log("12345",reviewId);
-            let data = await axios.delete("http://localhost:4500/review/crud/"+id, { data: { "id": reviewId } });
+            let data = await axios.delete(`${BASE_URL}/review/crud/`+id, { data: { "id": reviewId } });
             console.log(data.config.data);
-            const reviews = await axios.get("http://localhost:4500/review/" + id);
+            const reviews = await axios.get(`${BASE_URL}/review/` + id);
             console.log(reviews);
             setarr(reviews.data.data);
             alert("review deleted");

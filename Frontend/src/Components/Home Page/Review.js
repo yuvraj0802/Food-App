@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react';
 import Star from '../Images/star.png'
 import '../Styles/review.css'
 import axios from 'axios';
+import { BASE_URL } from '../../secrets';
 
 function Review() {
     const [arr, setarr] = useState([]);
 
     useEffect(async () => {
         try {
-            const data = await axios.get("http://localhost:4500/review/top3");
+            const data = await axios.get(`${BASE_URL}/review/top3`);
             console.log(data);
             setarr(data.data.data);
             // console.log(data.data.length);

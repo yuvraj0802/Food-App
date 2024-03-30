@@ -3,12 +3,15 @@ import '../Styles/allplans.css';
 import Tick from '../Images/check-mark.png'
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { BASE_URL } from '../../secrets';
+
+
 
 function AllPlans() {
     const [arr, arrset] = useState([]);
     useEffect(async () => {
         try {
-            const data = await axios.get("http://localhost:4500/plans/allPlans");
+            const data = await axios.get(`${BASE_URL}/plans/allPlans`);
             console.log(data.data);
             arrset(data.data.data);
         } catch (err) {

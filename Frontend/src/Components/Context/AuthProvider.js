@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router';
+import { BASE_URL } from '../../secrets';
+
 
 export const AuthContext = React.createContext();
 //custom hook that allows components to access context data
@@ -13,7 +15,7 @@ function AuthProvider({ children }) {
     const [loading, setLoading] = useState(false);
 
     async function signUp(name,email,password,confirmPassword) {
-        const data = await axios.post("http://localhost:4500/user/signup", {
+        const data = await axios.post(`${BASE_URL}/user/signup`, {
             name:name,
             email: email,
             password: password,
@@ -24,7 +26,7 @@ function AuthProvider({ children }) {
     }
     async function login(email, password) {
         try {
-            const data = await axios.post("http://localhost:4500/user/login", {
+            const data = await axios.post(`${BASE_URL}/user/login`, {
                 email: email,
                 password: password
             });
@@ -39,7 +41,7 @@ function AuthProvider({ children }) {
     }
     async function logout() {
         localStorage.removeItem("user")
-        const data = await axios.get("http://localhost:4500/user/logout");
+        const data = await axios.get(`${BASE_URL}/user/logout`);
         console.log(data);
         userSet(null);
     }

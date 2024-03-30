@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import '../Styles/plan.css';
 import Tick from '../Images/check-mark.png'
 import axios from 'axios';
+import { BASE_URL } from '../../secrets';
+
 // import { Link } from 'react-router-dom';
 
 function Plans() {
@@ -9,7 +11,7 @@ function Plans() {
 
     useEffect(async () => {
         try {
-            const data = await axios.get("http://localhost:4500/plans/top3");
+            const data = await axios.get(`${BASE_URL}/plans/top3`);
             console.log(data,23443);
             arrset(data.data.data);
             

@@ -2,6 +2,9 @@ import React, { useState , useEffect,useContext} from 'react';
 import '../Styles/profile.css';
 // import { useAuth } from '../Context/AuthProvider';
 import axios from 'axios';
+import { BASE_URL } from '../../secrets';
+
+
 
 function Profile() {
 
@@ -30,7 +33,7 @@ function Profile() {
     const handleClick = async () => {
         try {
             console.log(user._id);
-            const data = await axios.patch("http://localhost:4500/user/" + user._id, {
+            const data = await axios.patch(`${BASE_URL}/user/` + user._id, {
                email,
                 name,
                 password,
