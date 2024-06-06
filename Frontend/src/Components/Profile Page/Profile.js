@@ -30,7 +30,8 @@ function Profile() {
     const nameEdit = async () => {
         await axios.patch('/user/login');
     }
-    const handleClick = async () => {
+    const handleClick = async (e) => {
+        e.preventDefault();
         try {
             console.log(user._id);
             const data = await axios.patch(`${BASE_URL}/user/` + user._id, {
@@ -54,14 +55,14 @@ function Profile() {
                 <div className='h1Box'>
                     <h1 className='h1'>Profile</h1>
                     <div className="line"></div>
-                    <div className="profileImage">
-                        {/* {<img src={user.user.profileImage} /> } */}
-                    </div>
+                    {/* <div className="profileImage">
+                        {user.user.profileImage && <img src={user.user.profileImage} /> }
+                    </div> */}
                 </div>
                 <div className="loginBox">
-                    <div className="entryBox">
+                    {/* <div className="entryBox">
                         <input type="file" />
-                    </div>
+                    </div> */}
                     <div className="entryBox">
                         <div className="entryText">Email</div>
                         <input className="email input" type="email" value={email} onChange={(e) => emailSet(e.target.value)} />

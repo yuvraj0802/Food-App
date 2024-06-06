@@ -17,11 +17,11 @@ function Home() {
                     <div className="iCard">
                         <div className="headerBox">
                             <div className="header1">
-                                <h1 className="hh1">MEAL PLANS.</h1>
+                                <h1 className="hh1">Delicious Meals, </h1>
                             </div>
                             <div className="header2">
-                                <h1 className="hh1">FOR</h1>
-                                <h1 className=" animateh1">EVERYONE</h1>
+                                <h1 className="hh1">Just a </h1>
+                                <h1 className=" animateh1">Click Away</h1>
                             </div>
                         </div>
                         

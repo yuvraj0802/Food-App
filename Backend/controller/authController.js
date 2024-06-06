@@ -1,8 +1,11 @@
 const express = require("express");
+
+
 const userModel = require("../models/userModel");
 const jwt = require("jsonwebtoken");
 const { sendMail } = require("../utility/nodemailer");
 const { JWT_KEY } = require("../secrets");
+// const { StrictMode } = require("react");
 
 //sign up user
 module.exports.signup = async function signup(req, res) {
@@ -21,7 +24,6 @@ module.exports.signup = async function signup(req, res) {
         message: "error while signing up",
       });
     }
-    // console.log('backend',user);
   } catch (err) {
     res.json({
       message: err.message,
@@ -41,12 +43,10 @@ module.exports.login = async function login(req, res) {
         if (user.password == data.password) {
           let uid = user["_id"]; //uid
           let token = jwt.sign({ payload: uid }, JWT_KEY);
-          res.cookie("login", token, { httpOnly: true  });
-          // res.cookie('isLoggedIn',true);
-          console.log("logged in", user)
+          res.cookie("login", token, { httpOnly: true });
           return res.json({
-            message: "User has logged in",
-            data: user, // userDetails:data,
+            message: "User has logged in successfully",
+            data: user 
           });
         } else {
           return res.json({
@@ -93,7 +93,7 @@ module.exports.protectRoute = async function protectRoute(req, res, next) {
       token = req.cookies.login;
       let payload = jwt.verify(token, JWT_KEY);
       if (payload) {
-        console.log("payload token", payload);
+        // console.log("payload token", payload);
         const user = await userModel.findById(payload.payload);
         req.role = user.role;
         req.id = user.id;
@@ -106,10 +106,10 @@ module.exports.protectRoute = async function protectRoute(req, res, next) {
       }
     } else {
       //browser
-      const client=req.get('User-Agent');
-      if(client.includes("Mozilla")==true){
-        return res.redirect('/login');
-      }
+      // const client=req.get('User-Agent');
+      // if(client.includes("Mozilla")==true){
+      //   return res.redirect('/login');
+      // }
       //postman
       res.json({
         message: "please login",

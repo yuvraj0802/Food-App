@@ -44,10 +44,10 @@ const userSchema=mongoose.Schema({
     enum:['admin','user','restaurantowner','deliveryboy'],
     default:'user'
   },
-  profileImage:{
-    type:String,
-    default:'../Images/UserIcon.png'
-  },
+  // profileImage:{
+  //   type:String,
+  //   default:'../Images/UserIcon.png'
+  // },
   resetToken:String
 });
 //pre post hooks 

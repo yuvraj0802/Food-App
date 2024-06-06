@@ -15,8 +15,8 @@ reviewRouter
 .route('/:id')
 .get(getPlanReviews);
 
-// reviewRouter.use(protectRoute);
-reviewRouter
+reviewRouter.use(protectRoute);
+reviewRouter 
 .route('/crud/:plan')
 .post(createReview)
 .patch(updateReview)

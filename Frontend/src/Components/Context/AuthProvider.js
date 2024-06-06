@@ -29,20 +29,23 @@ function AuthProvider({ children }) {
             const data = await axios.post(`${BASE_URL}/user/login`, {
                 email: email,
                 password: password
+            },{
+                withCredentials: true
             });
-            console.log("dataaa",data);
+            console.log("datah",data);
             userSet(data.data.data);
             localStorage.setItem("user", JSON.stringify(data.data));
+
             return data;
         }
-        catch (err) {
+        catch (err) { 
             console.log(err);
         }
     }
     async function logout() {
         localStorage.removeItem("user")
         const data = await axios.get(`${BASE_URL}/user/logout`);
-        console.log(data);
+        console.log("logout : ",data);
         userSet(null);
     }
 

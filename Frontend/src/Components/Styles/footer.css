@@ -1,6 +1,7 @@
 .footerImg{
     height: 30vh;
-    background-image: url('../Images/foodiesfeed.com_pizza-ready-for-baking.jpg');
+    /* background-image: url('../Images/foodiesfeed.com_pizza-ready-for-baking.jpg'); */
+    background-image: url('../Images/pexels-chanwalrus-958545.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;

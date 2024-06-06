@@ -21,12 +21,12 @@ function Footer() {
                     
                     <ul className="social-link">
                         <li>
-                            <Link to="https://www.facebook.com/foodyy.chaachaa">
+                            <Link to="https://www.facebook.com/">
                             </Link>
                         </li>
                         <li>
-                            <Link to="https://www.instagram.com/foddy_chaachaa">
-                                
+                            <Link to="https://www.instagram.com/yuvraj_0802">
+                               
                             </Link>
                         </li>
                         <li>
@@ -43,7 +43,7 @@ function Footer() {
                 </div>
 
                 <p className="footer-p">
-                    Copyright © 2019 EVERYONE. All rights reserved.
+                    Created By Yuvraj
                 </p>
             </footer>
         </div>

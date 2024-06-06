@@ -41,7 +41,9 @@ function PlanDetail() {
             "review": review,
             "rating": rate,
             "user": user._id,
-            "plan": id
+            "plan": id,
+        },{
+            withCredentials: true
         })
         console.log(data);
         const reviews = await axios.get(`${BASE_URL}/review/` + id);
@@ -52,12 +54,21 @@ function PlanDetail() {
         try{
            
             // console.log("12345",reviewId);
-            let data = await axios.delete(`${BASE_URL}/review/crud/`+id, { data: { "id": reviewId } });
+            let data = await axios.delete(`${BASE_URL}/review/crud/`+id, { data: { "id": reviewId }, withCredentials: true });
             console.log(data.config.data);
-            const reviews = await axios.get(`${BASE_URL}/review/` + id);
-            console.log(reviews);
-            setarr(reviews.data.data);
-            alert("review deleted");
+            // const reviews = await axios.get(`${BASE_URL}/review/` + id);
+            // console.log(reviews);
+            // setarr(reviews.data.data);
+            // alert("review deleted");
+            if (data.data.message === "Review deleted") {
+                alert("Review deleted successfully");
+                // Fetch updated reviews
+                const reviews = await axios.get(`${BASE_URL}/review/` + id, { withCredentials: true });
+                console.log(reviews);
+                setarr(reviews.data.data);
+            } else {
+                alert(data.data.message);
+            }
         }
         catch(err){
             alert(err);
