@@ -43,7 +43,7 @@ module.exports.login = async function login(req, res) {
         if (user.password == data.password) {
           let uid = user["_id"]; //uid
           let token = jwt.sign({ payload: uid }, JWT_KEY);
-          res.cookie("login", token, { httpOnly: true, sameSite: 'None' });
+          res.cookie("login", token, { httpOnly: true,secure:true, sameSite: 'None' });
           return res.json({
             message: "User has logged in successfully",
             data: user 
